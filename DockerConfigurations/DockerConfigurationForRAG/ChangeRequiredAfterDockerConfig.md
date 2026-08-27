@@ -163,16 +163,44 @@ This prevents secrets from being committed.
 
 ---
 
-### Step 5: Frontend `.env` Stays As-Is
+### Step 5: Frontend `.env` — Ensure the Value is Empty
 
 **File:** `D:\rag-system\rag-frontend\.env`
 
+`VITE_API_BASE_URL` is intentionally empty.
+
 ```env
-VITE_API_BASE_URL=http://localhost:5173
+VITE_API_BASE_URL=
 ```
 
-**No change needed.** The browser still accesses `http://localhost:5173`.
-Nginx inside Docker proxies `/api/*` to the backend.
+This makes the frontend use relative API URLs such as:
+
+```text
+/api/login
+/api/users/me
+/api/chat/ask
+/api/chat/stream
+```
+
+The browser sends these requests to the same origin:
+
+```text
+http://localhost:5173
+```
+
+Nginx then proxies `/api/` requests to the Spring Boot backend container.
+
+```text
+Browser
+   ↓
+localhost:5173
+   ↓
+Nginx
+   ↓ /api/*
+backend:8082
+```
+
+**No change is required to the frontend source code.** Ensure the value stays empty — do not set it to `http://localhost:5173`.
 
 ---
 

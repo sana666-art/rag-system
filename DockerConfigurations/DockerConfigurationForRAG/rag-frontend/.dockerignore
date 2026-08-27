@@ -2,8 +2,8 @@ node_modules
 dist
 .git
 .gitignore
-.env
-.env.*
+.env.local
+.env.*.local
 Dockerfile
 .dockerignore
 npm-debug.log
