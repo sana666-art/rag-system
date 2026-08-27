@@ -85,33 +85,6 @@ export default function SourceCard({ source }) {
                         </pre>
                     </div>
 
-                    {Object.keys(metadata).length > 0 && (
-                        <div>
-                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
-                                Metadata
-                            </p>
-                            <div className="overflow-hidden rounded-lg border border-gray-200">
-                                <table className="w-full text-xs">
-                                    <tbody>
-                                        {Object.entries(metadata).map(([key, value]) => (
-                                            <tr
-                                                key={key}
-                                                className="border-b border-gray-100 last:border-0"
-                                            >
-                                                <td className="w-1/3 bg-white px-2.5 py-1.5 font-medium text-gray-500">
-                                                    {key}
-                                                </td>
-                                                <td className="bg-white px-2.5 py-1.5 text-gray-700">
-                                                    {String(value)}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    )}
-
                     <div className="flex flex-wrap gap-2 text-[11px] text-gray-500">
                         <span>Similarity: {source.similarity.toFixed(4)}</span>
                         <span>Source ID: {source.sourceId}</span>
