@@ -1,0 +1,10 @@
+.git
+.gitignore
+.idea
+.vscode
+target
+*.iml
+.env
+application-local.properties
+backend.log
+backend.err.log
