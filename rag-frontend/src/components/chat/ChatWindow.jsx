@@ -8,6 +8,7 @@ export default function ChatWindow({
     onSuggest,
     onRegenerate,
     onEdit,
+    hideDeveloperPanel,
 }) {
 
     return (
@@ -24,6 +25,7 @@ export default function ChatWindow({
                                 isLast={index === messages.length - 1}
                                 onRegenerate={onRegenerate}
                                 onEdit={onEdit}
+                                hideDeveloperPanel={hideDeveloperPanel}
                             />
                         ))}
                     </div>

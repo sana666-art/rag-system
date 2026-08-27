@@ -63,6 +63,7 @@ export default function ChatContainer() {
                     onSuggest={chat.sendMessage}
                     onRegenerate={chat.regenerate}
                     onEdit={chat.editMessage}
+                    hideDeveloperPanel
                 />
 
                 <ChatInput
