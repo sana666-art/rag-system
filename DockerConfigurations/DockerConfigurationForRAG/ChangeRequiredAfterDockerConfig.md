@@ -56,7 +56,7 @@ spring.mail.password=fjaj ovai vdua azxb
 spring.ai.ollama.base-url=http://localhost:11434
 spring.ai.ollama.embedding.options.model=nomic-embed-text
 
-spring.ai.google.gemini.api-key=AIzaSyDua__8Wx_hqHwLP51k8fKxPU55atihsxY
+spring.ai.google.gemini.api-key=APIKEY_VALUE
 
 app.cors.allowed-origins=http://localhost:5173,http://127.0.0.1:5173
 ```
