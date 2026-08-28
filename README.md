@@ -352,6 +352,25 @@ You ran `pg_restore` more than once (or against a non-empty DB). Reset cleanly: 
 docker exec -it rag-ollama ollama pull nomic-embed-text
 ```
 
+### Backend fails to boot: "Could not resolve placeholder 'GEMINI_API_KEY'"
+`spring.ai.google.gemini.api-key` uses `${GEMINI_API_KEY:}` (empty default), so the app boots even without the key. Put a real key in `.env` for actual Gemini calls. Do not commit `.env`.
+
+### `docker compose up --build` fails with EIO / input/output error / "error reading from server: EOF"
+This is a **Docker Desktop storage problem**, not an app bug. Symptoms: the Maven image fails to extract Perl modules and `npm ci` throws `TAR_ENTRY_ERROR EIO` while writing `node_modules`. Fix:
+1. **Quit and restart Docker Desktop** (right-click tray icon → Quit, then reopen and wait until the engine is green).
+2. **Free disk space** — Task Manager → Performance, check C: free space; in Docker Desktop **Settings → Resources**, increase the **Disk image size**.
+3. **Clean up** — `docker system prune` (add `-a` only if sure; never run `-v` here — it deletes the `postgres_data` volume holding your migrated DB).
+4. Rebuild: `docker compose up -d --build`.
+
+### "failed to connect to the docker API ... cannot find the file specified"
+Docker Desktop's Linux engine is **not running** (it crashed after the failed build). Restart Docker Desktop and wait for the engine to be ready before retrying.
+
+### Backup the migrated DB before destructive Docker commands
+The **migrated data lives in the `postgres_data` named volume**, which Docker cleanup can delete. Before `docker system prune -v` or container removal:
+```bash
+docker exec -i rag-db pg_dump -U postgres -Fc AlphaPlace2 > safe_backup.dump
+```
+
 ---
 
 ## License / Notes
