@@ -55,7 +55,9 @@ services:
   # Spring Boot Backend
   # ============================================
   backend:
-    image: sana44043/rag-system-backend:latest
+    build:
+      context: ./rag-backend
+      dockerfile: Dockerfile
 
     container_name: rag-backend
 
@@ -93,7 +95,9 @@ services:
   # React Frontend (Nginx)
   # ============================================
   frontend:
-    image: sana44043/rag-system-frontend:latest
+    build:
+      context: ./rag-frontend
+      dockerfile: Dockerfile
 
     container_name: rag-frontend
 
